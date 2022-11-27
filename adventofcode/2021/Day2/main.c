@@ -53,6 +53,65 @@ void part_one(char * input){
     printf("Product: %d\n", (horizontal * depth));
 }
 
+void part_two(char * input){
+    FILE * fp;
+    char * line = NULL;
+    size_t len = 0;
+    ssize_t read;
+    int horizontal = 0;
+    int depth = 0;
+    int aim = 0;
+    
+    fp = fopen(input, "r");
+    while((read = getline(&line, &len, fp)) != -1){
+        printf("\nRetrieved line of length %zu:\n", read);
+        printf("%s\n", line);
+
+        for(int i = 0; i < read; i++){
+            if(line[i] == ' '){
+                printf("i: %d\n", i);
+                if(i == 2){
+
+                    // up
+                    int num = line[i+1] - '0';
+                    printf("num: %d\n", num);
+                    aim -= num;
+                }
+                else if (i == 4)
+                {
+                    // down
+                    int num = line[i+1] - '0';
+                    printf("num: %d\n", num);
+                    aim += num;
+                }
+                else if (i == 7)
+                {
+                    // forward
+                    int num = line[i+1] - '0';
+                    printf("num: %d\n", num);
+                    horizontal += num;
+                    depth += (num * aim);
+                }
+                printf("Horizontal: %d\n", horizontal);
+                printf("Depth: %d\n", depth);
+                printf("Aim: %d\n", aim);
+                break;
+            }
+        }
+
+    }
+
+    fclose(fp);
+    if(line){
+        free(line);
+    }
+
+    printf("\nHorizontal: %d\n", horizontal);
+    printf("Depth: %d\n", depth);
+    printf("Aim: %d\n", aim);
+    printf("Product: %d\n", (horizontal * depth));
+}
+
 void main(int argc, char **argv){
 
     if(argv[1] == NULL){
@@ -62,6 +121,9 @@ void main(int argc, char **argv){
 
     printf("Part one:\n");
     part_one(argv[1]);
+
+    printf("Part two:\n");
+    part_two(argv[1]);
 
     exit(0);
 }
