@@ -39,7 +39,7 @@ void part_one(char * input){
         free(line);
     }
 
-    printf("Increased: %d\n", increased);
+    printf("\nIncreased: %d\n", increased);
     printf("Decreased: %d\n", decreased);
 }
 
@@ -62,10 +62,8 @@ void part_two(char * input){
         printf("%s\n", line);
         first_value = atoi(line);
         if(second_value != 0 && third_value != 0){
-            printf("F: %d\nS: %d\nT: %d\n", first_value, second_value, third_value);
             sum1 = first_value + second_value + third_value;
             if(sum2 != 0){
-                printf("S1: %d\nS2: %d\n", sum1, sum2);
                 if((sum1 - sum2) > 0){
                     printf("Increased\n");
                     increased += 1;
@@ -86,7 +84,7 @@ void part_two(char * input){
         free(line);
     }
 
-    printf("Increased: %d\n", increased);
+    printf("\nIncreased: %d\n", increased);
     printf("Decreased: %d\n", decreased);
 }
 
